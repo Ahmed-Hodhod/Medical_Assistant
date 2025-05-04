@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Realtime API Tester</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>OpenAI Realtime API Tester</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('webrtc')">WebRTC</button>
+            <button class="tab-btn" onclick="openTab('websocket')">WebSocket</button>
+        </div>
+        
+        <div id="webrtc" class="tab-content active">
+            <h2>WebRTC Connection (Browser-friendly)</h2>
+            <div class="form-group">
+                <label for="webrtc-model">Model:</label>
+                <input type="text" id="webrtc-model" value="gpt-4o-realtime-preview-2024-12-17">
+            </div>
+            <div class="form-group">
+                <label for="webrtc-voice">Voice:</label>
+                <select id="webrtc-voice">
+                    <option value="shimmer">Shimmer</option>
+                    <option value="verse">Verse</option>
+                    <option value="alloy">Alloy</option>
+                    <option value="echo">Echo</option>
+                    <option value="fable">Fable</option>
+                    <option value="onyx">Onyx</option>
+                    <option value="nova">Nova</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="webrtc-system-prompt">System Prompt:</label>
+                <textarea id="webrtc-system-prompt" rows="4">أنت مساعد طبي يتحدث باللهجة المصرية، متخصص في حجوزات العيادات والمستشفيات. مهمتك هي مساعدة المرضى في حجز مواعيد، الإجابة على استفساراتهم عن الأطباء المتاحين، ساعات العمل، وشرح الإجراءات الطبية البسيطة. يجب أن تكون ودودًا ومتعاطفًا ومطمئنًا. تحدث دائماً باللهجة المصرية العامية، واستخدم التعبيرات الشائعة مثل "إزيك"، "عامل إيه"، "إن شاء الله"، "الحمد لله". احرص على إظهار التعاطف عند التعامل مع المرضى المتوترين، وقدم معلومات دقيقة لكن بطريقة مبسطة. إذا لم تكن متأكدًا من معلومة طبية معينة، احرص على التوضيح أنك ستحتاج للتأكد من الطبيب المختص.</textarea>
+            </div>
+            <div class="buttons">
+                <button id="webrtc-start">Start Conversation</button>
+                <button id="webrtc-stop" disabled>Stop Conversation</button>
+            </div>
+            <div class="controls">
+                <button id="webrtc-mute" disabled>Mute Mic</button>
+                <button id="webrtc-unmute" disabled>Unmute Mic</button>
+            </div>
+            <div class="message-input">
+                <input type="text" id="webrtc-message" placeholder="Type a message">
+                <button id="webrtc-send" disabled>Send</button>
+            </div>
+        </div>
+        
+        <div id="websocket" class="tab-content">
+            <h2>WebSocket Connection (Server-to-server)</h2>
+            <div class="form-group">
+                <label for="ws-model">Model:</label>
+                <input type="text" id="ws-model" value="gpt-4o-realtime-preview-2024-12-17">
+            </div>
+            <div class="form-group">
+                <label for="ws-system-prompt">System Prompt:</label>
+                <textarea id="ws-system-prompt" rows="4">أنت مساعد طبي يتحدث باللهجة المصرية، متخصص في حجوزات العيادات والمستشفيات. مهمتك هي مساعدة المرضى في حجز مواعيد، الإجابة على استفساراتهم عن الأطباء المتاحين، ساعات العمل، وشرح الإجراءات الطبية البسيطة. يجب أن تكون ودودًا ومتعاطفًا ومطمئنًا. تحدث دائماً باللهجة المصرية العامية، واستخدم التعبيرات الشائعة مثل "إزيك"، "عامل إيه"، "إن شاء الله"، "الحمد لله". احرص على إظهار التعاطف عند التعامل مع المرضى المتوترين، وقدم معلومات دقيقة لكن بطريقة مبسطة. إذا لم تكن متأكدًا من معلومة طبية معينة، احرص على التوضيح أنك ستحتاج للتأكد من الطبيب المختص.</textarea>
+            </div>
+            <div class="buttons">
+                <button id="ws-connect">Connect</button>
+                <button id="ws-disconnect" disabled>Disconnect</button>
+            </div>
+            <div class="message-control">
+                <input type="text" id="ws-message" placeholder="Enter a message to send">
+                <button id="ws-send" disabled>Send</button>
+            </div>
+        </div>
+        
+        <div class="log-container">
+            <h3>Logs</h3>
+            <div id="log-output" class="log"></div>
+            <button id="clear-log">Clear Logs</button>
+        </div>
+    </div>
+    
+    <script src="/static/app.js"></script>
+</body>
+</html>
