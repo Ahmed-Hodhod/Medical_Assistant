@@ -49,7 +49,7 @@ python main.py
 Or using uvicorn directly:
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 2. Open your browser and navigate to `http://localhost:8000` to access the web client

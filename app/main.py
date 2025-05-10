@@ -5,17 +5,17 @@ import uvicorn
 import sys
 from pathlib import Path
 
-# Add the parent directory to the path if running directly
-if __name__ == "__main__":
-    # Get the directory containing this file
-    file_path = Path(__file__).resolve()
-    # Add the parent directory of the 'app' directory to the Python path
-    parent_dir = file_path.parent.parent
-    sys.path.append(str(parent_dir))
-
-# Now import application components
+# # Add the parent directory to the path if running directly
+# if __name__ == "__main__":
+#     # Get the directory containing this file
+#     file_path = Path(__file__).resolve()
+#     # Add the parent directory of the 'app' directory to the Python path
+#     parent_dir = file_path.parent.parent
+#     sys.path.append(str(parent_dir))
 from app.api.routes import router
 from app.api.websocket import websocket_proxy_handler
+from app.endpoints.appoinments_routes import router as appointments_router
+
 
 # Create FastAPI application
 app = FastAPI(title="OpenAI Realtime API Server")
@@ -30,7 +30,8 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(router)
+app.include_router(router, tags=["general"])
+app.include_router(appointments_router, prefix="/api/v1", tags=["appointments and doctors"])
 
 # WebSocket endpoint
 @app.websocket("/ws/proxy")
